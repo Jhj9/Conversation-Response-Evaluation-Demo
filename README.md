@@ -7,7 +7,7 @@ Pycharm
 
 1) Get from VCS로 시작하기
 
-2) https://github.com/Jhj9/HLILab_Evaluation_Demo.git <br>
+2) https://github.com/Jhj9/HLILab_Evaluation_Demo_v1.git <br>
 입력해서 clone<br>
 
 3) Terminal에<br> 
