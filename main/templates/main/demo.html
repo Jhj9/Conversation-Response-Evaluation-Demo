@@ -50,34 +50,19 @@
       <p style="font-size:16px; color:#333;"><b>
         Which of the following sentences is appropriate for a conversation?
       </b></p>
-      <img src="{%static 'image2.jpg' %}" alt="Demo2" width="500" height="250" style="image-rendering: -webkit-optimize-contrast;">
-      <br><br>
-      <div class="quiz" id="quiz2">
-        <div class="container">
+      <p id="context" style="line-height: 2;">
+      </p>
+      <br>
+      <div class="quiz" id="quiz1">
+       <div class="container">
           <form>
-            <label>
-              <input type="radio" id="2op1" name="quiz2" value="1"/>
-              <span>I went there last time, but it's the same. I don't trust doctors</span>
-            </label>
-            <label>
-              <input type="radio" id="2op2" name="quiz2" value="2"/>
-              <span>Let me take your temperature.</span>
-            </label>
-            <label>
-              <input type="radio" id="2op3" name="quiz2" value="3"/>
-              <span>Did your eye doctor prescribe you contact lenses?</span>
-            </label>
-            <label>
-              <input type="radio" id="2op4" name="quiz2" value="4"/>
-              <span>Input your answer manually</span>
-            </label>
-            <input type="text" class="input" id="inputDirect2" name="inputDirect2" autocomplete="off" placeholder="Enter your answer (English Only)"/>
+            <input type="text" class="input" id="inputDirect1" name="inputDirect1" autocomplete="off" placeholder="Enter your answer (English Only)"/>
           </form>
         </div>
       </div>
-      <div class="results" id="result2"></div>
+      <div class="results" id="result1"></div>
       <div>
-        <button class="submit" id="submit2">Submit</button>
+        <button class="submit" id="submit1">Submit</button>
         <a href="{% url 'demo' %}" style="text-decoration:none;margin-left:350px"><button class="submit" id="retry">&nbsp;Next <b>→</b></button></a>
       </div>
     </div>
@@ -110,34 +95,35 @@
   </footer>
 
 <script type="text/javascript">
+
   $(function() {
     $(document).on("keydown", "form", function(event) {
         return event.key != "Enter";
     });
-    $("#inputDirect2").hide();
-    $("#result2").hide();
-    $("input[name='quiz2']:radio").change(function() {
-      if(this.value == "4") {
-          $("#inputDirect2").show(300);
-          $("#inputDirect2").focus();
-      } else {
-        $("#inputDirect2").hide(300);
+    $("#result1").hide();
+    $.getJSON( "./static/Q.json", function( json ) {
+      n = Math.floor(Math.random()*json.length);
+      user = ['A','B'];
+      data = json[n];
+      txt = "";
+      for(i=0; i< data.question.length; i++){
+        txt += user[i%2]+ " : " + data.question[i] + " " + "<br>";
       }
+      txt += user[data.question.length%2] + " : <u>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u>";
+      //txt += data.gold + " " + "<br>";
+
+      $("#context").html(txt);
     });
 
     function showResult(btn){
       loader.setReload(true);
-      let answer = "";
-      let num = $("input[name=quiz"+btn+"]:checked").val();
-      if(num == "4") {
-        answer = $("#inputDirect"+btn).val();
-      } else {
-        answer = $("input[name=quiz"+btn+"]:checked~span").text();
-      }
+      answer = $("#inputDirect"+btn).val();
+      gold = data.gold;
+
       $.ajax({
         type: "POST",
         url: "{% url "submit" %}",
-        data: JSON.stringify({"quiz" : btn, "op" : num, "answer" : answer}),
+        data: JSON.stringify({"quiz" : btn, "gold" : gold, "answer" : answer}),
         success: function (response) {
           loader.off();
           const regExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
@@ -173,31 +159,36 @@
 
     function progress(score_r, score_b){
       var elem = document.getElementById("progressbar_r");
-          var width = 0;
-          var id = setInterval(frame, 5);
-          function frame() {
-            if (width >= score_r) {
-              clearInterval(id);
-            } else {
-              width += 1;
-              elem.style.width = width + '%';
-            }
-          };
-          var elem1 = document.getElementById("progressbar_b");
-          var width1 = 0;
-          var id1 = setInterval(frame1, 5);
-          function frame1() {
-            if (width1 >= score_b) {
-              clearInterval(id1);
-            } else {
-              width1 += 1;
-              elem1.style.width = width1 + '%';
-            }
-          }
+      var width = 0;
+      var id = setInterval(frame, 5);
+      function frame() {
+        if (width >= score_r) {
+          clearInterval(id);
+        } else {
+          width += 1;
+          elem.style.width = width + '%';
+        }
       };
+      var elem1 = document.getElementById("progressbar_b");
+      var width1 = 0;
+      var id1 = setInterval(frame1, 5);
+      function frame1() {
+        if (width1 >= score_b) {
+          clearInterval(id1);
+        } else {
+          width1 += 1;
+          elem1.style.width = width1 + '%';
+        }
+      }
+    };
 
-    $("#submit2").on('click', function(){ showResult(2)});
+    $("#submit1").on('click', function(){ showResult(1)});
+
+
   });
+
+
+
 </script>
 
 </body>
