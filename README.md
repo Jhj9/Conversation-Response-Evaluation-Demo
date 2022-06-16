@@ -17,7 +17,7 @@ Pycharm
   pip install bert_score <br>
 입력
 
-4) mysite/secrets.json 생성 후 SECRET_KEY 입력
+4) mysite/secrets.json 생성 후 SECRET_KEY 입력 <br>
   Ex) {"SECRET_KEY": "django-insecure-dml=장고시크릿키50자"} 
 
 5) Terminal에  
