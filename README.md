@@ -17,11 +17,14 @@ Pycharm
   pip install bert_score <br>
 입력
 
-4) Terminal에  
+4) mysite/secrets.json 생성 후 SECRET_KEY 입력
+  Ex) {"SECRET_KEY": "django-insecure-dml=장고시크릿키50자"} 
+
+5) Terminal에  
   python manage.py runserver <br>
 입력하면 실행됨
 
-5) Terminal에 뜨는 <br>
+6) Terminal에 뜨는 <br>
   http://127.0.0.1:8000/ <br>
 클릭해서 웹페이지 실행
 
