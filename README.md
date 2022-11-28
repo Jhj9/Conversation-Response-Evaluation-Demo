@@ -1,5 +1,5 @@
-# HLILab_Evaluation_Demo_v1
-HLILab_Evaluation_Demo_v1
+# 단어 레벨 및 문맥 레벨에서의 대화 응답 적절성 자동 평가 프로그램
+단어 레벨 및 문맥 레벨에서의 대화 응답 적절성 자동 평가 프로그램
 
 Pycharm
 
