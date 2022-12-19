@@ -24,7 +24,7 @@ Pycharm
 
 1) Get from VCS
 
-2) https://github.com/Jhj9/HLILab_Evaluation_Demo_v1.git clone<br>
+2) https://github.com/Jhj9/Conversation-Response-Evaluation-Demo.git clone<br>
 
 3) Terminal에<br> 
   pip install django <br>
