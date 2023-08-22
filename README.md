@@ -26,12 +26,7 @@ Pycharm
 
 2) https://github.com/Jhj9/Conversation-Response-Evaluation-Demo.git clone<br>
 
-3) Terminal에<br> 
-  pip install django <br>
-  pip install rouge <br>
-  pip install datasets <br>
-  pip install bert_score <br>
-  입력
+3) pip install -r requirements.txt<br>
 
 4) mysite/secrets.json 생성 후 SECRET_KEY 입력 <br>
   Ex) {"SECRET_KEY": "django-insecure-dml=장고시크릿키50자"} <br>
